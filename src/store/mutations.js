@@ -1,0 +1,28 @@
+export default {
+  dragStart: (state, source) => {
+    state.dragSource = source;
+  },
+  dragEnd: state => {
+    if (state.dragTarget !== null) {
+      if (state.dragSource === 'work') state.workSec = state.dragTarget * 10;
+      else state.restSec = state.dragTarget * 10 - state.workSec;
+    }
+    state.dragSource = null;
+    state.dragTarget = null;
+  },
+  dragEnter: (state, target) => {
+    state.dragTarget = target;
+  },
+  startClock: state => {
+    state.isRunning = true;
+  },
+  stopClock: state => {
+    state.isRunning = false;
+  },
+  setAnimation: (state, status) => {
+    state.isAnimate = status;
+  },
+  setMinutes: (state, min) => {
+    state.minHand = min;
+  }
+};
