@@ -1,3 +1,7 @@
+import geometery from '../logic/geometery';
+
+const { isInRange } = geometery;
+
 export default {
   dragStart: (state, source) => {
     state.dragSource = source;
@@ -11,7 +15,9 @@ export default {
     state.dragTarget = null;
   },
   dragEnter: (state, target) => {
-    state.dragTarget = target;
+    const { dragSource, workSec, restSec } = state;
+    if (isInRange(target, dragSource, restSec, workSec))
+      state.dragTarget = target;
   },
   startClock: state => {
     state.isRunning = true;

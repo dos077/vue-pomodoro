@@ -7,30 +7,41 @@
     <dial :dialId="'rest'" />
     <dial :dialId="'work'" />
 
+    <gauge />
+
+    <controls />
+
     <div v-for="i in getSixty()" class="mark" :key="i">
-      <span class="dial-target" />
+      <span
+        v-if="dragSource !== null"
+        class="dial-target"
+        @mouseover="dragEnter(i * 6)"
+      />
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapMutations } from 'vuex';
 import Dial from './Dial.vue';
+import Gauge from './Gauge.vue';
+import Controls from './Controls.vue';
 
 export default {
   name: 'WatchFace',
-  components: { Dial },
+  components: { Dial, Gauge, Controls },
   computed: {
-    ...mapState(['isRunning', 'isAnimate', 'minHand']),
+    ...mapState(['isRunning', 'isAnimate', 'minHand', 'dragSource']),
     secondAnimation() {
-      return this.isAnimate
-        ? 'clock 60s steps(300) infinite '
-        : 'none ' + this.isRunning
-        ? 'running'
-        : 'paused';
+      if (!this.isAnimate) return 'none';
+      return (
+        'clock 60s steps(300) infinite ' +
+        (this.isRunning ? 'running' : 'paused')
+      );
     }
   },
   methods: {
+    ...mapMutations(['dragEnter']),
     getSixty() {
       const arr = [];
       for (let i = 0; i < 60; i++) {
