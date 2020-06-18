@@ -22,6 +22,16 @@
         @click="clockController.reset"
       ></span>
     </figure>
+    <figure class="btn-loop">
+      <span
+        id="loopClock"
+        class="loop"
+        :class="loopOn ? 'go' : 'stop'"
+        @click="loopToggle"
+      >
+        🗘
+      </span>
+    </figure>
   </figure>
 </template>
 
@@ -35,7 +45,8 @@ const timer = createTimer();
 export default {
   name: 'Controls',
   data: () => ({
-    clockController: null
+    clockController: null,
+    loopOn: null
   }),
   computed: {
     ...mapState(['isRunning', 'workSec', 'restSec'])
@@ -64,7 +75,10 @@ export default {
     this.clockController = clockControls(timer, mutations);
   },
   methods: {
-    ...mapMutations(['startClock', 'stopClock', 'setMinutes', 'setAnimation'])
+    ...mapMutations(['startClock', 'stopClock', 'setMinutes', 'setAnimation']),
+    loopToggle() {
+      this.loopOn = timer.setLoop(true);
+    }
   }
 };
 </script>

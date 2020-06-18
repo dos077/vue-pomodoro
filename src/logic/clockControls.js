@@ -15,7 +15,7 @@ const clockControl = (
       }, workLeft * 1000);
     } else if (!countDown && restLeft > 0 && restLeft < 15) {
       countDown = setTimeout(function() {
-        stopClock();
+        if (!timer.setLoop()) stopClock();
         countDown = null;
       }, restLeft * 1000);
     }

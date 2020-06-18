@@ -245,10 +245,10 @@ body {
       }
     }
     .go {
-      color: $acc-color;
+      color: $prime-color;
     }
     .stop {
-      color: $prime-color;
+      color: $acc-color;
     }
     #startClock::before {
       left: 30%;
@@ -283,9 +283,8 @@ body {
     }
   }
   #loopClock {
-    color: $acc-color;
     font-size: 5.5rem;
-    line-height: 6rem;
+    line-height: 5.2rem;
     font-weight: bulk;
     &.on {
       color: $prime-color;
