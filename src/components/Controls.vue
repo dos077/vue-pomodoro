@@ -66,7 +66,11 @@ export default {
     }
   },
   mounted() {
-    timer.set(this.restSec, this.workSec);
+    const loadedPrefs = timer.load();
+    if (loadedPrefs) {
+      this.loadPrefs(loadedPrefs);
+      this.loopOn = loadedPrefs.loop;
+    } else timer.set(this.restSec, this.workSec);
     const mutations = {};
     mutations.startClock = this.startClock;
     mutations.stopClock = this.stopClock;
@@ -83,7 +87,8 @@ export default {
       'setMinutes',
       'setAnimation',
       'setAlert',
-      'setWorkAlert'
+      'setWorkAlert',
+      'loadPrefs'
     ]),
     loopToggle() {
       this.loopOn = timer.setLoop(true);

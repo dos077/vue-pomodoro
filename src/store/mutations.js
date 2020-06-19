@@ -37,5 +37,9 @@ export default {
   },
   setWorkAlert: (state, newStatus) => {
     state.workAlert = newStatus;
+  },
+  loadPrefs: (state, prefs) => {
+    state.restSec = prefs.restTime;
+    state.workSec = prefs.workTime;
   }
 };
