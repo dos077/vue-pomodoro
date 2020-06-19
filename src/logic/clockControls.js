@@ -15,7 +15,7 @@ const clockControl = (
         countDown = setTimeout(function() {
           setWorkAlert(false);
           countDown = null;
-        }, 6000);
+        }, 7000);
       }, workLeft * 1000);
     } else if (!countDown && restLeft > 0 && restLeft < 15) {
       countDown = setTimeout(function() {
@@ -27,7 +27,7 @@ const clockControl = (
           countDown = setTimeout(function() {
             setAlert(false);
             countDown = null;
-          }, 60000);
+          }, 70000);
         }
       }, restLeft * 1000);
     }

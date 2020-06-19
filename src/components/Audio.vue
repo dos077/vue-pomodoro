@@ -5,8 +5,8 @@
 <script>
 import { mapState } from 'vuex';
 
-const doneBell = new Audio('./bell.mp3');
-const workBell = new Audio('./bell.mp3');
+const doneBell = new Audio('./computermagic.mp3');
+const workBell = new Audio('./bigben.mp3');
 
 export default {
   name: 'AudioPlayer',
