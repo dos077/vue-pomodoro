@@ -18,6 +18,8 @@
         @mouseover="dragEnter(i * 6)"
       />
     </div>
+
+    <audio-player />
   </div>
 </template>
 
@@ -26,12 +28,13 @@ import { mapState, mapMutations } from 'vuex';
 import Dial from './Dial.vue';
 import Gauge from './Gauge.vue';
 import Controls from './Controls.vue';
+import AudioPlayer from './Audio';
 
 export default {
   name: 'WatchFace',
-  components: { Dial, Gauge, Controls },
+  components: { Dial, Gauge, Controls, AudioPlayer },
   computed: {
-    ...mapState(['isRunning', 'isAnimate', 'minHand', 'dragSource']),
+    ...mapState(['isRunning', 'isAnimate', 'minHand', 'dragSource', 'isDone']),
     secondAnimation() {
       if (!this.isAnimate) return 'none';
       return (

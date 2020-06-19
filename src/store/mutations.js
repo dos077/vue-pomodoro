@@ -22,6 +22,7 @@ export default {
   startClock: state => {
     state.isRunning = true;
   },
+
   stopClock: state => {
     state.isRunning = false;
   },
@@ -30,5 +31,11 @@ export default {
   },
   setMinutes: (state, min) => {
     state.minHand = min;
+  },
+  setAlert: (state, newStatus) => {
+    state.doneAlert = newStatus;
+  },
+  setWorkAlert: (state, newStatus) => {
+    state.workAlert = newStatus;
   }
 };

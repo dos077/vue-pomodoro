@@ -5,5 +5,7 @@ export default {
   dragTarget: null,
   isRunning: false,
   isAnimate: false,
-  minHand: 0
+  minHand: 0,
+  workAlert: false,
+  doneAlert: false
 };

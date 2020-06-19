@@ -2,13 +2,13 @@
   <figure v-if="clockController" class="controls">
     <figure class="btn-main">
       <span
-        v-if="!isRunning"
+        v-if="!isRunning & !doneAlert"
         id="startClock"
         class="go"
         @click="clockController.start"
       ></span>
       <span
-        v-else
+        v-if="isRunning"
         id="stopClock"
         class="stop"
         @click="clockController.stop"
@@ -49,7 +49,7 @@ export default {
     loopOn: null
   }),
   computed: {
-    ...mapState(['isRunning', 'workSec', 'restSec'])
+    ...mapState(['isRunning', 'workSec', 'restSec', 'doneAlert'])
   },
   watch: {
     workSec: {
@@ -72,10 +72,19 @@ export default {
     mutations.stopClock = this.stopClock;
     mutations.setMinutes = this.setMinutes;
     mutations.setAnimation = this.setAnimation;
+    mutations.setAlert = this.setAlert;
+    mutations.setWorkAlert = this.setWorkAlert;
     this.clockController = clockControls(timer, mutations);
   },
   methods: {
-    ...mapMutations(['startClock', 'stopClock', 'setMinutes', 'setAnimation']),
+    ...mapMutations([
+      'startClock',
+      'stopClock',
+      'setMinutes',
+      'setAnimation',
+      'setAlert',
+      'setWorkAlert'
+    ]),
     loopToggle() {
       this.loopOn = timer.setLoop(true);
     }

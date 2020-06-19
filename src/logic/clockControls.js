@@ -1,6 +1,6 @@
 const clockControl = (
   timer,
-  { setMinutes, startClock, stopClock, setAnimation }
+  { setMinutes, startClock, stopClock, setAnimation, setWorkAlert, setAlert }
 ) => {
   let syncInterval;
   let countDown;
@@ -11,12 +11,24 @@ const clockControl = (
     let restLeft = timer.timeLeft().rest;
     if (!countDown && workLeft > 0 && workLeft < 15) {
       countDown = setTimeout(function() {
-        countDown = null;
+        setWorkAlert(true);
+        countDown = setTimeout(function() {
+          setWorkAlert(false);
+          countDown = null;
+        }, 6000);
       }, workLeft * 1000);
     } else if (!countDown && restLeft > 0 && restLeft < 15) {
       countDown = setTimeout(function() {
-        if (!timer.setLoop()) stopClock();
-        countDown = null;
+        setAlert(true);
+        if (!timer.setLoop()) {
+          stopClock();
+          countDown = null;
+        } else {
+          countDown = setTimeout(function() {
+            setAlert(false);
+            countDown = null;
+          }, 60000);
+        }
       }, restLeft * 1000);
     }
   };
@@ -73,6 +85,8 @@ const clockControl = (
   };
 
   const reset = (play = false) => {
+    setWorkAlert(false);
+    setAlert(false);
     timer.set();
     syncTime();
     resetSecond(false);
