@@ -1,6 +1,6 @@
 <template>
   <div class="main centerd">
-    <div class="square width-100">
+    <div class="clock-container">
       <watch-face />
     </div>
   </div>
