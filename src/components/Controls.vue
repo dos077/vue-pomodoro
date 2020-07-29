@@ -124,7 +124,7 @@ export default {
       this.loopOn = timer.setLoop(true);
     },
     getIconSize() {
-      const scaling = 5;
+      const scaling = 4.5;
       const base = Math.min(15, vmin(2));
       this.iconSize = base * scaling;
     }
