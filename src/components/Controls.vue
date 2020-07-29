@@ -29,7 +29,7 @@
         :class="loopOn ? 'go' : 'stop'"
         @click="loopToggle"
       >
-        🗘
+        <restore-icon :size="iconSize" />
       </span>
     </figure>
   </figure>
@@ -37,8 +37,29 @@
 
 <script>
 import { mapMutations, mapState } from 'vuex';
+import RestoreIcon from 'vue-material-design-icons/Restore.vue';
 import createTimer from '../logic/timer';
 import clockControls from '../logic/clockControls';
+
+function vh(v) {
+  var h = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight || 0
+  );
+  return (v * h) / 100;
+}
+
+function vw(v) {
+  var w = Math.max(
+    document.documentElement.clientWidth,
+    window.innerWidth || 0
+  );
+  return (v * w) / 100;
+}
+
+function vmin(v) {
+  return Math.min(vh(v), vw(v));
+}
 
 const timer = createTimer();
 
@@ -46,8 +67,12 @@ export default {
   name: 'Controls',
   data: () => ({
     clockController: null,
-    loopOn: null
+    loopOn: null,
+    iconSize: 15
   }),
+  components: {
+    RestoreIcon
+  },
   computed: {
     ...mapState(['isRunning', 'workSec', 'restSec', 'doneAlert'])
   },
@@ -79,6 +104,11 @@ export default {
     mutations.setAlert = this.setAlert;
     mutations.setWorkAlert = this.setWorkAlert;
     this.clockController = clockControls(timer, mutations);
+    this.getIconSize();
+    window.addEventListener('resize', this.getIconSize);
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.getIconSize);
   },
   methods: {
     ...mapMutations([
@@ -92,6 +122,11 @@ export default {
     ]),
     loopToggle() {
       this.loopOn = timer.setLoop(true);
+    },
+    getIconSize() {
+      const scaling = 5;
+      const base = Math.min(15, vmin(2));
+      this.iconSize = base * scaling;
     }
   }
 };
