@@ -16,20 +16,20 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/vue-pomodoro/computermagic.mp3"
   },
   {
-    "revision": "6187d23107b4afea7de8",
-    "url": "/vue-pomodoro/css/app.3144d4e3.css"
+    "revision": "70d513ac3b65c45f9848",
+    "url": "/vue-pomodoro/css/app.1ffdf853.css"
   },
   {
-    "revision": "2aa4793a455e7182f338579f6ccd264f",
+    "revision": "bb97dfc81d0f816f461f7cbc636154c4",
     "url": "/vue-pomodoro/index.html"
   },
   {
-    "revision": "6187d23107b4afea7de8",
-    "url": "/vue-pomodoro/js/app.c5cf0aed.js"
+    "revision": "70d513ac3b65c45f9848",
+    "url": "/vue-pomodoro/js/app.9a74cde2.js"
   },
   {
-    "revision": "63a2d9d7df482ef9a964",
-    "url": "/vue-pomodoro/js/chunk-vendors.17797c13.js"
+    "revision": "35cd8dc0b1f784dbe758",
+    "url": "/vue-pomodoro/js/chunk-vendors.7c15b338.js"
   },
   {
     "revision": "b101f4082516be08ad5b4ccfc3b52472",
