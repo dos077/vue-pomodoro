@@ -2,15 +2,15 @@
   <figure
     :id="dialId + 'Dial'"
     class="dial"
-    @mousedown="onDrag"
-    @touchstart="onDrag"
     :style="`transform: rotate(${rotation}deg)`"
   >
     <span
       :id="dialId + 'Point'"
       class="dial-point"
-      :style="dragOn ? 'transform: scale(2,3); opacity: 0.6' : ''"
-    ></span>
+      :style="dragOn ? 'transform: scale(2,2.5); opacity: 0.6' : ''"
+    >
+    </span>
+    <div class="ui-target" @mousedown="onDrag" @touchstart="onDrag" />
   </figure>
 </template>
 

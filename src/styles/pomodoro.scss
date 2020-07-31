@@ -21,7 +21,6 @@ body {
 .clock-container {
   width: 100%;
   max-width: 50rem;
-  padding: 2.5%;
   margin: 0 auto;
   &::before {
     content: '';
@@ -205,11 +204,21 @@ body {
   span{
     display: block;
     position: absolute;
+    z-index: 1;
     top: -24rem;
     left: -.8rem;
     height: 2.5rem;
     width: 1.6rem;
     clip-path: polygon(0% 0%, 100% 0, 100% 50%, 50% 100%, 0 50%);
+  }
+  .ui-target {
+    position: absolute;
+    z-index: 2;
+    top: -25rem;
+    left: -1.5rem;
+    height: 4.5rem;
+    width: 3rem;
+    cursor: pointer;
   }
   #restPoint {
     background-color: $acc-color;
